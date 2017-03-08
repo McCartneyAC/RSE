@@ -1,0 +1,24 @@
+andrews.d<-function(linearhypo,aovm){
+  sum_stats <- summary(aovm)[[1]]
+mse<-mean(aovm$residuals^2)
+MSE<-mse(aovm)
+RMSE<-sqrt(MSE)
+  sum_linear<-summary(linearhypo)[[1]]
+  estimate<-sum_linear[["Estimate"]][[1]]
+
+#THIS FUNCTION WON'T WORK UNTIL
+  #YOU FIGURE OUT LINEAR CONTRASTS 
+
+  d<-sum(estimate/RMSE)
+  return(d)
+}
+andrews.d(linear,fit)
+
+
+
+
+sum_linear<-summary(glht(aov2, linfct = M))[[1]]
+sum_linear
+
+
+holy god figure this out already

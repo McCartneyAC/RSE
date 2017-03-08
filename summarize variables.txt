@@ -1,0 +1,22 @@
+#function to summarize the variables in the data
+summarize.vars<-function(data){
+  
+  #use dummies package to turn all factors into dummies
+  require(dummies, quietly=TRUE)
+  dat.d<-dummy.data.frame(data, dummy.class="factor")
+  
+  #use apply to calculate statistics for each variable
+  mat<-t(apply(dat.d, 2, function(x) c(length(x), 
+                                      round(mean(x, na.rm=TRUE),2), 
+                                      round(sd(x, na.rm=TRUE),2), 
+                                      round(min(x, na.rm=TRUE),2), 
+                                      round(max(x, na.rm=TRUE),2), 
+                                      length(x)-length(x[!is.na(x)]))))
+
+  #assign column names and rownames to output table
+  colnames(mat)<-c("N","Mean","SD","Min","Max","Num Missing")
+  rownames(mat)<-colnames(dat.d)
+  return(mat)
+}
+
+summarize.vars(bpdata)

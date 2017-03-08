@@ -1,0 +1,27 @@
+#function to get confidence intervals for glm output, can get exponentiated output for logit or poisson
+glmCI <- function(glmfit, exponent=FALSE, alpha=0.05, digits=2)
+{
+  #get SE from model fit
+  se <- sqrt(diag(summary(glmfit)$cov.scaled))
+  
+  #calculuate CI for linear case
+  mat <- cbind(coef(glmfit),
+                 coef(glmfit) - qnorm(1-alpha/2)*se,
+                 coef(glmfit) + qnorm(1-alpha/2)*se)
+  colnames(mat) <- c("Beta", "LowerCI", "UpperCI")
+  
+  #if exponent=TRUE, exponeniate the coefficients and CIs
+  if(exponent == TRUE)
+  {
+    mat <- exp(mat)
+    if(summary(glmfit)$family$link=="logit") colnames(mat)[1] <- "OR"
+    if(summary(glmfit)$family$link=="log") colnames(mat)[1] <- "IRR"
+  }
+  
+  #return a rounded matrix of results
+  return(round(mat, digits=digits))
+}
+
+#1. use glm with identity link on continuous response data (default family is gaussian)
+g.glm<-glm(bp~age+sex, data=bpdata)
+glmCI(g.glm)

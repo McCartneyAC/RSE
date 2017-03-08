@@ -1,0 +1,49 @@
+#----REGWQ - Ryan / Einot and Gabriel / Welsch  test procedure  
+
+Number of hyp.:	 10 
+Number of rej.:	 6 
+  rejected pValues adjPValues
+1        5  0.0023     0.0023
+2        2  0.0035     0.0035
+3        8  0.0061     0.0061
+4        4  0.0138     0.0138
+5        3   2e-04      2e-04
+6        1   3e-04      3e-04
+$adjPValues
+ [1] 3e-04  0.0035 2e-04  0.0138 0.0023 0.2069 0.943  0.0061 0.4759
+[10] 0.3196
+10 Levels: 0.0023 0.0035 0.0061 0.0138 0.2069 0.3196 ... 3e-04
+
+$rejected
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
+
+$statistic
+ [1] 6.6088 5.1854 6.5072 4.1687 5.0837 2.4402 0.1017 4.0670 1.0167
+[10] 1.4234
+
+$confIntervals
+    [,1] [,2] [,3]
+4-2  6.5   NA   NA
+5-2  5.1   NA   NA
+4-1  6.4   NA   NA
+3-2  4.1   NA   NA
+5-1  5.0   NA   NA
+4-3  2.4   NA   NA
+1-2  0.1   NA   NA
+3-1  4.0   NA   NA
+5-3  1.0   NA   NA
+4-5  1.4   NA   NA
+
+$errorControl
+An object of class "ErrorControl"
+Slot "type":
+[1] "FWER"
+
+Slot "alpha":
+[1] 0.05
+
+Slot "k":
+numeric(0)
+
+Slot "q":
+numeric(0)
